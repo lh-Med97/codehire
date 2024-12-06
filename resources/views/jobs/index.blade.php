@@ -22,8 +22,8 @@
                         <div class="p-6">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150">
-                                        <a href="{{ route('jobs.show', $job) }}">{{ $job->title }}</a>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                                        {{ $job->title }}
                                     </h3>
                                     <div class="mt-2 flex items-center text-gray-600 dark:text-gray-400">
                                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,9 +57,33 @@
                                 {{ Str::limit($job->description, 150) }}
                             </div>
                             <div class="mt-4 flex justify-end">
-                                <a href="{{ route('jobs.show', $job) }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-                                    View Details →
-                                </a>
+                                @auth
+                                    <a href="{{ route('jobs.show', $job) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                        View Details →
+                                    </a>
+                                @else
+                                    <div x-data="{ open: false }" class="relative">
+                                        <button @click="open = true" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                            View Details →
+                                        </button>
+                                        
+                                        <!-- Auth Modal -->
+                                        <div x-show="open" @click.away="open = false" class="absolute right-0 bottom-10 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 z-50">
+                                            <div class="text-center">
+                                                <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Sign in to view details</h4>
+                                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Please login or create an account to view job details</p>
+                                                <div class="space-y-2">
+                                                    <a href="{{ route('login') }}" class="block w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                                                        Login
+                                                    </a>
+                                                    <a href="{{ route('register') }}" class="block w-full px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors">
+                                                        Register
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endauth
                             </div>
                         </div>
                     </div>
