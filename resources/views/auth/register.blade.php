@@ -2,8 +2,10 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-br from-blue-100 to-white dark:from-gray-900 dark:to-gray-800">
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
             <div class="mb-8 text-center">
-                <a href="/" class="flex justify-center mb-4">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <a href="/" class="inline-block mb-4">
+                    <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                        CodeHire
+                    </h1>
                 </a>
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Create an Account</h2>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Join our community today</p>
