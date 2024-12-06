@@ -1,0 +1,46 @@
+@import 'animations.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animation Base Classes */
+.transition-base {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card Animations */
+.card {
+    @apply bg-white rounded-lg shadow-md transition-base hover:shadow-lg;
+}
+
+/* Button Animations */
+.btn {
+    @apply transition-base hover:-translate-y-0.5 active:translate-y-0;
+}
+
+/* Navigation Animations */
+.nav-link {
+    @apply transition-base hover:text-primary-600;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300;
+}
+
+.nav-link:hover::after {
+    @apply w-full;
+}
